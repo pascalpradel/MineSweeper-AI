@@ -1,0 +1,57 @@
+        
+        i = 0
+        j = 0
+
+        while i < self.count_rows:
+            while j < self.count_lines:
+                prob_board_data = self.prob_board[j][i]
+
+                if  prob_board_data[0] >= highest_number[2] and prob_board_data[1] > 1:
+                    if  prob_board_data[0] > 80:
+                        if prob_board_data[1] > highest_number[3]:
+                            highest_number = [j,i,prob_board_data[0],prob_board_data[1]]
+                if prob_board_data[1] > 1:
+                    if prob_board_data[0] <= lowest_number[2]:
+                        if  prob_board_data[0] < 80:
+                            if prob_board_data[1] > lowest_number[3]:
+                                lowest_number = [j,i,prob_board_data[0],prob_board_data[1]]
+
+
+                """
+                elif self.rounds_since_last_klick > 3 and prob_board_data[0] != 0 and prob_board_data[1] > 1:
+                    if prob_board_data[0] < lowest_number[2]:
+                        lowest_number = [j,i,prob_board_data[0]]
+                """
+                j += 1
+            i += 1
+            j = 0
+
+        if lowest_number[2] != 1000:
+            data = self.board[lowest_number[0]][lowest_number[1]]
+            print("Left-Klick: " + str(lowest_number[0]) + " /" +  str(lowest_number[1]))
+            self.leftclick(data[0],data[1])
+            self.rounds_since_last_klick = 0
+        else:
+            self.rounds_since_last_klick += 1
+
+        time.sleep(0.25)
+
+        if highest_number[2] != 0:
+            data = self.board[highest_number[0]][highest_number[1]]
+            print("Right-Klick: " + str(highest_number[0]) + " /" +  str(highest_number[1]))
+            self.rightclick(data[0],data[1])
+
+#############################################################################################################################################
+
+elif self.check_pixel(pixel, self.color_flag, [25,25,200]):
+    box_id = 2 #"FLAG"
+elif self.check_pixel(pixel, self.color_flag_2, self.abweichung):
+    box_id = 2 #"FLAG"
+elif self.check_pixel(pixel, self.color_one, [25,120,25]):
+    box_id = 3 #"EINS"
+elif self.check_pixel(pixel, self.color_one_2, self.abweichung):
+    box_id = 3 #"EINS"
+elif self.check_pixel(pixel, self.color_two, [80,70,130]):
+    box_id = 4 #"ZWEI"
+elif self.check_pixel(pixel, self.color_three, [80,70,130]):
+    box_id = 5 #"DREI"
